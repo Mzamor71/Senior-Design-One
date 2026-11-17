@@ -1,0 +1,4 @@
+timestamp          , messages_published, messages_received, elapsed_seconds, throughput_msg_per_sec, delivery_percent, max_sampled_cpu_percent, max_sampled_memory_percent, max_sampled_rss_kib, qos
+2026-10-26 13:50:09,                100,               100,          0.2098,                 476.67,            100.0,                        ,                           ,                    ,   0
+2026-10-26 13:50:10,               1000,              1000,          0.2117,                4724.09,            100.0,                        ,                           ,                    ,   0
+2026-10-26 13:50:11,              10000,             10000,          0.2956,               33834.1 ,            100.0,                        ,                           ,                    ,   0
