@@ -1,0 +1,548 @@
+
+:root {
+    --background: #0b1119;
+    --surface: #111b27;
+    --surface-raised: #162231;
+    --border: #263648;
+    --text: #e2e8f0;
+    --muted: #8494a8;
+    --accent: #5798d6;
+    --accent-soft: rgba(87, 152, 214, 0.12);
+    --green: #43bd91;
+    --red: #e16c70;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    min-width: 320px;
+}
+
+.app-shell {
+    min-height: 100vh;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.topbar {
+    min-height: 76px;
+    background: #101925;
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand,
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-mark {
+    width: 39px;
+    height: 39px;
+    border: 1px solid #41678d;
+    color: #8ec5f3;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.brand-name {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.brand-subtitle {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.status-indicator,
+.refresh-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.status-indicator.online {
+    background: var(--green);
+}
+
+.status-indicator.offline {
+    background: var(--red);
+}
+
+.clock {
+    padding-left: 15px;
+    border-left: 1px solid var(--border);
+    color: #c1cfdd;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   MAIN CONTENT
+======================================== */
+
+.main-content {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 38px 0 25px;
+}
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 36px;
+}
+
+.breadcrumb {
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.9px;
+}
+
+.page-heading h1 {
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.page-description {
+    color: var(--muted);
+    margin-top: 7px;
+    font-size: 13px;
+}
+
+.refresh-info {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.refresh-dot {
+    background: var(--green);
+}
+
+/* ========================================
+   SECTIONS
+======================================== */
+
+.section-block {
+    margin-bottom: 35px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    color: #c4d0dd;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+}
+
+.section-index {
+    color: var(--accent);
+    margin-right: 10px;
+    font-family: Consolas, monospace;
+}
+
+.section-description {
+    color: #64778d;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+/* ========================================
+   METRIC PANELS
+======================================== */
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.metric-panel,
+.data-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.metric-panel {
+    padding: 21px 23px 17px;
+    min-height: 148px;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+}
+
+.metric-tag {
+    color: #7193b5;
+    font-family: Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: 0.9px;
+}
+
+.metric-value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 19px 0 15px;
+    color: #edf4fb;
+    font-size: 36px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.metric-unit {
+    color: #91a7bc;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.text-value {
+    text-transform: capitalize;
+}
+
+.metric-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid #243344;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* ========================================
+   AI CONFIDENCE BAR
+======================================== */
+
+.confidence-track {
+    height: 4px;
+    background: #293849;
+    margin: -4px 0 13px;
+    overflow: hidden;
+}
+
+.confidence-track div {
+    height: 100%;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+/* ========================================
+   HISTORICAL CHARTS
+======================================== */
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px 12px;
+}
+
+.panel-heading h2 {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.panel-heading p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.chart-unit {
+    color: var(--accent);
+    font-family: Consolas, monospace;
+    font-size: 12px;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 190px;
+    padding: 0 10px 10px;
+}
+
+/* ========================================
+   TABLES
+======================================== */
+
+.table-panel {
+    padding: 0;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+}
+
+thead {
+    background: #162333;
+}
+
+th {
+    padding: 13px 16px;
+    color: #8295aa;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+}
+
+td {
+    padding: 14px 16px;
+    border-top: 1px solid #223143;
+    color: #c6d2df;
+    font-size: 12px;
+}
+
+tbody tr:hover {
+    background: #172535;
+}
+
+.device-id {
+    color: #8fc2ee;
+    font-family: Consolas, monospace;
+    font-weight: 600;
+}
+
+.topic-text {
+    color: #9fb0c1;
+    font-family: Consolas, monospace;
+    font-size: 11px;
+}
+
+.data-status {
+    display: inline-block;
+    padding: 4px 7px;
+    color: #77d5b1;
+    background: rgba(67, 189, 145, 0.10);
+    border: 1px solid rgba(67, 189, 145, 0.22);
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.empty-state {
+    padding: 25px;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* ========================================
+   XIAO ESP32S3 TELEMETRY
+======================================== */
+
+.xiao-signal-track {
+    width: 100%;
+    height: 5px;
+    background: #293849;
+    margin: -4px 0 13px;
+    overflow: hidden;
+}
+
+.xiao-signal-track div {
+    width: 0;
+    height: 100%;
+    background: var(--green);
+    transition: width 0.4s ease;
+}
+
+.xiao-device-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.xiao-device-status > div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.xiao-status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.xiao-status-indicator.online {
+    background: var(--green);
+    box-shadow: 0 0 8px rgba(67, 189, 145, 0.45);
+}
+
+.xiao-status-indicator.offline {
+    background: var(--red);
+}
+
+.xiao-status-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.xiao-status-indicator.online + .xiao-status-label {
+    color: var(--green);
+}
+
+.xiao-status-indicator.offline + .xiao-status-label {
+    color: var(--red);
+}
+
+/* ========================================
+   FOOTER AND ERRORS
+======================================== */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    border-top: 1px solid var(--border);
+    padding: 18px 0;
+    color: #65778c;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+}
+
+.footer-divider {
+    margin: 0 8px;
+    color: #40536a;
+}
+
+.error-message {
+    color: var(--red);
+    font-size: 12px;
+    padding: 8px 0;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 760px) {
+    .main-content {
+        width: 94%;
+        padding-top: 25px;
+    }
+
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-description {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .topbar {
+        padding: 15px 4%;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .topbar-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .page-heading h1 {
+        font-size: 23px;
+    }
+
+    .metric-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metric-panel {
+        min-height: 135px;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .xiao-device-status {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IoT Monitoring | Raspberry Pi</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="{{ url_for('static', filename='app.js') }}"
+            defer></script>
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div class="brand">
+                <div class="brand-mark">IO</div>
+
+                <div>
+                    <div class="brand-name">IOT MONITORING SYSTEM</div>
+                    <div class="brand-subtitle">
+                        Raspberry Pi 4 / Data Acquisition
+                    </div>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+                    <span id="api-indicator"
+                          class="status-indicator"></span>
+
+                    <span id="api-status">CONNECTING</span>
+                </div>
+
+                <div class="clock" id="system-clock">--:--:--</div>
+
+            </div>
+
+        </header>
+
+
+        <main class="main-content">
+
+            <!-- PAGE HEADING -->
+            <section class="page-heading">
+
+                <div>
+                    <div class="breadcrumb">
+                        MONITORING / OVERVIEW
+                    </div>
+
+                    <h1>Device Overview</h1>
+
+                    <p class="page-description">
+                        Incoming telemetry and device activity
+                    </p>
+                </div>
+
+                <div class="refresh-info">
+                    <span class="refresh-dot"></span>
+                    AUTO REFRESH · 3 SEC
+                </div>
+
+            </section>
+
+
+            <!-- 01 ENVIRONMENTAL TELEMETRY -->
+            <section class="section-block">
+
+                <div class="section-title">
+                    <div>
+                        <span class="section-index">01</span>
+                        ENVIRONMENTAL TELEMETRY
+                    </div>
+
+                    <span class="section-description">
+                        ESP32 / SENSOR DATA
+                    </span>
+                </div>
+
+                <div class="metric-grid">
+
+                    <article class="metric-panel">
+
+                        <div class="metric-header">
+                            <span>TEMPERATURE</span>
+                            <span class="metric-tag">ENV-01</span>
+                        </div>
+
+                        <div class="metric-value">
+                            <span id="temperature">--</span>
+                            <span class="metric-unit">°C</span>
+                        </div>
+
+                        <div class="metric-footer">
+                            <span>Environmental sensor</span>
+                            <span id="temperature-time">NO DATA</span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="metric-panel">
+
+                        <div class="metric-header">
+                            <span>RELATIVE HUMIDITY</span>
+                            <span class="metric-tag">ENV-02</span>
+                        </div>
+
+                        <div class="metric-value">
+                            <span id="humidity">--</span>
+                            <span class="metric-unit">%</span>
+                        </div>
+
+                        <div class="metric-footer">
+                            <span>Environmental sensor</span>
+                            <span id="humidity-time">NO DATA</span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- 02 ARTIFICIAL INTELLIGENCE -->
+            <section class="section-block">
+
+                <div class="section-title">
+                    <div>
+                        <span class="section-index">02</span>
+                        ARTIFICIAL INTELLIGENCE
+                    </div>
+
+                    <span class="section-description">
+                        JETSON / OBJECT DETECTION
+                    </span>
+                </div>
+
+                <div class="metric-grid">
+
+                    <article class="metric-panel">
+
+                        <div class="metric-header">
+                            <span>DETECTED OBJECT</span>
+                            <span class="metric-tag">AI-01</span>
+                        </div>
+
+                        <div class="metric-value text-value"
+                             id="detected-object">--</div>
+
+                        <div class="metric-footer">
+                            <span>Latest classification</span>
+                            <span id="detection-time">NO DATA</span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="metric-panel">
+
+                        <div class="metric-header">
+                            <span>DETECTION CONFIDENCE</span>
+                            <span class="metric-tag">AI-02</span>
+                        </div>
+
+                        <div class="metric-value">
+                            <span id="confidence">--</span>
+                            <span class="metric-unit">%</span>
+                        </div>
+
+                        <div class="confidence-track">
+                            <div id="confidence-bar"></div>
+                        </div>
+
+                        <div class="metric-footer">
+                            <span>Model confidence score</span>
+                            <span>0–100%</span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- 03 XIAO ESP32S3 TELEMETRY -->
+            <section class="section-block">
+
+                <div class="section-title">
+                    <div>
+                        <span class="section-index">03</span>
+                        XIAO ESP32S3 TELEMETRY
+                    </div>
+
+                    <span class="section-description">
+                        EMBEDDED DEVICE / NETWORK STATUS
+                    </span>
+                </div>
+
+                <div class="metric-grid">
+
+                    <!-- WIFI SIGNAL -->
+                    <article class="metric-panel">
+
+                        <div class="metric-header">
+                            <span>WI-FI SIGNAL STRENGTH</span>
+                            <span class="metric-tag">NET-01</span>
+                        </div>
+
+                        <div class="metric-value">
+                            <span id="xiao-rssi">--</span>
+                            <span class="metric-unit">dBm</span>
+                        </div>
+
+                        <div class="xiao-signal-track">
+                            <div id="xiao-signal-bar"></div>
+                        </div>
+
+                        <div class="metric-footer">
+                            <span id="xiao-signal-quality">NO DATA</span>
+                            <span>Wireless connection</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- DEVICE UPTIME -->
+                    <article class="metric-panel">
+
+                        <div class="metric-header">
+                            <span>DEVICE UPTIME</span>
+                            <span class="metric-tag">SYS-01</span>
+                        </div>
+
+                        <div class="metric-value text-value"
+                             id="xiao-uptime">--</div>
+
+                        <div class="metric-footer">
+                            <span>Last message received</span>
+                            <span id="xiao-last-seen">NO DATA</span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- DEVICE STATUS -->
+                <div class="xiao-device-status">
+
+                    <div>
+                        <span class="xiao-status-indicator"
+                              id="xiao-status-indicator"></span>
+
+                        <span class="xiao-status-label"
+                              id="xiao-status">
+                            WAITING FOR DEVICE
+                        </span>
+                    </div>
+
+                    <span class="metric-tag">
+                        xiao_esp32s3_01
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- 04 HISTORICAL SENSOR DATA -->
+            <section class="section-block">
+
+                <div class="section-title">
+                    <div>
+                        <span class="section-index">04</span>
+                        HISTORICAL SENSOR DATA
+                    </div>
+
+                    <span class="section-description">
+                        SQLITE / STORED READINGS
+                    </span>
+                </div>
+
+                <div class="chart-grid">
+
+                    <article class="data-panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Temperature History</h2>
+                                <p>Recorded temperature measurements</p>
+                            </div>
+
+                            <span class="chart-unit">°C</span>
+                        </div>
+
+                        <canvas id="temperature-chart"
+                                aria-label="Temperature history chart"></canvas>
+
+                    </article>
+
+
+                    <article class="data-panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <h2>Humidity History</h2>
+                                <p>Recorded relative humidity</p>
+                            </div>
+
+                            <span class="chart-unit">%</span>
+                        </div>
+
+                        <canvas id="humidity-chart"
+                                aria-label="Humidity history chart"></canvas>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- 05 DEVICE REGISTRY -->
+            <section class="section-block">
+
+                <div class="section-title">
+                    <div>
+                        <span class="section-index">05</span>
+                        DEVICE REGISTRY
+                    </div>
+
+                    <span class="section-description">
+                        LATEST RECEIVED MESSAGE
+                    </span>
+                </div>
+
+                <div class="data-panel table-panel">
+
+                    <div class="table-scroll">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>DEVICE ID</th>
+                                    <th>DEVICE TYPE</th>
+                                    <th>LAST MESSAGE</th>
+                                    <th>LAST RECEIVED</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="device-table">
+                                <tr>
+                                    <td colspan="4" class="empty-state">
+                                        Waiting for device data...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- 06 MESSAGE HISTORY -->
+            <section class="section-block">
+
+                <div class="section-title">
+                    <div>
+                        <span class="section-index">06</span>
+                        MESSAGE HISTORY
+                    </div>
+
+                    <span class="section-description">
+                        MQTT / RECENT ACTIVITY
+                    </span>
+                </div>
+
+                <div class="data-panel table-panel">
+
+                    <div class="table-scroll">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>RECORD</th>
+                                    <th>DEVICE</th>
+                                    <th>TOPIC</th>
+                                    <th>PAYLOAD SUMMARY</th>
+                                    <th>RECEIVED</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="message-table">
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        Waiting for messages...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+
+                <div>
+                    RASPBERRY PI IOT MONITORING SYSTEM
+                </div>
+
+                <div>
+                    <span id="database-count">0</span>
+                    STORED RECORDS
+
+                    <span class="footer-divider">|</span>
+
+                    <span id="last-updated">NOT UPDATED</span>
+                </div>
+
+            </footer>
+
+            <div id="error-message" class="error-message"></div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
